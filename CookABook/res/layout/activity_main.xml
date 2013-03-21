@@ -2,17 +2,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    
     tools:context=".MainActivity" >
 
-    <TextView
+    <EditText
+        android:id="@+id/searchBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_weight="1"
+        android:ems="10" 
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50px"/>
+
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search" 
+        android:layout_below="@+id/searchBox"
+        android:layout_centerHorizontal="true"/>
+
+    <ListView
+        android:id="@+id/weeklyList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/searchButton" >
+        
+    </ListView>
     
     <com.devspark.sidenavigation.SideNavigationView
         android:id="@+id/side_navigation_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+
+    </com.devspark.sidenavigation.SideNavigationView>
 
 </RelativeLayout>

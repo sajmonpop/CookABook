@@ -3,6 +3,7 @@ package com.example.cookabook;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.ListView;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -17,6 +18,7 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
     public static final String EXTRA_RESOURCE_ID = "com.devspark.sidenavigation.sample.extra.RESOURCE_ID";
     public static final String EXTRA_MODE = "com.devspark.sidenavigation.sample.extra.MODE";
     private SideNavigationView sideNavigationView;
+    private ListView weekList;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,9 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
         }
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        
+        weekList = (ListView)findViewById(R.id.weeklyList);
+        
 	}
 
 	@Override
