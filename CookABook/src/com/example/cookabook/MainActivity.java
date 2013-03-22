@@ -2,8 +2,10 @@ package com.example.cookabook;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.app.ListActivity;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -39,7 +41,25 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         
-        weekList = (ListView)findViewById(R.id.weeklyList);
+        //WeekList wl = new WeekList(R.id.weeklyList);
+        
+        ListView listView = (ListView) findViewById(R.id.weeklyList);
+        String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
+          "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
+          "Linux", "OS/2" };
+
+        // Define a new Adapter
+        // First parameter - Context
+        // Second parameter - Layout for the row
+        // Third parameter - ID of the TextView to which the data is written
+        // Forth - the Array of data
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+          android.R.layout.simple_list_item_1, android.R.id.text1, values);
+
+
+        // Assign adapter to ListView
+        listView.setAdapter(adapter); 
         
 	}
 
