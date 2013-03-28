@@ -2,9 +2,18 @@ package com.example.cookabook;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Toast;
+import android.app.AlertDialog;
 import android.app.ListActivity;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -20,7 +29,9 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
     public static final String EXTRA_RESOURCE_ID = "com.devspark.sidenavigation.sample.extra.RESOURCE_ID";
     public static final String EXTRA_MODE = "com.devspark.sidenavigation.sample.extra.MODE";
     private SideNavigationView sideNavigationView;
-    private ListView weekList;
+    private EditText eText;
+    private Spinner msTextMatches;
+    //private MyList weekList;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +49,17 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
             
             sideNavigationView.setMode(getIntent().getIntExtra(EXTRA_MODE, 0) == 0 ? Mode.LEFT : Mode.RIGHT);
         }
+        
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         
-        //WeekList wl = new WeekList(R.id.weeklyList);
+        //weekList  = new MyList();
+        Button btn = (Button) findViewById(R.id.searchButton);
+        EditText eText = (EditText) findViewById(R.id.searchBox);
+        msTextMatches = (Spinner) findViewById(R.id.sNoOfMatches);
+        Text2Speech tts = new Text2Speech(btn, eText, this);
         
-        ListView listView = (ListView) findViewById(R.id.weeklyList);
+        /*ListView listView = (ListView) findViewById(R.id.weeklyList);
         String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
           "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
           "Linux", "OS/2" };
@@ -59,7 +75,7 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
 
 
         // Assign adapter to ListView
-        listView.setAdapter(adapter); 
+        listView.setAdapter(adapter); */
         
 	}
 
@@ -97,6 +113,19 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
 
 	@Override
 	public void onSideNavigationItemClick(int itemId) {
+		Log.d("MyApp","I am here");
+		// 1. Instantiate an AlertDialog.Builder with its constructor
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+		// 2. Chain together various setter methods to set the dialog characteristics
+		builder.setMessage("Change settings!")
+		       .setTitle("Settings");
+
+		// 3. Get the AlertDialog from create()
+		AlertDialog dialog = builder.create();
+		
+		dialog.show();
+		
 		// TODO Auto-generated method stub
 		
 	} 
@@ -132,5 +161,31 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
         // no animation of transition
         overridePendingTransition(0, 0);
     }
+    
+    public void speak(View view) {
+    	  Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+    	 
+    	  // Specify the calling package to identify your application
+    	  intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getClass()
+    	    .getPackage().getName());
+    	 
+    	  // Display an hint to the user about what he should say.
+    	  intent.putExtra(RecognizerIntent.EXTRA_PROMPT, eText.getText()
+    	    .toString());
+    	 
+    	  // Given an hint to the recognizer about what the user is going to say
+    	  //There are two form of language model available
+    	  //1.LANGUAGE_MODEL_WEB_SEARCH : For short phrases
+    	  //2.LANGUAGE_MODEL_FREE_FORM  : If not sure about the words or phrases and its domain.
+    	intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+    	    RecognizerIntent.LANGUAGE_MODEL_WEB_SEARCH);
+    	 
+    	  // If number of Matches is not selected then return show toast message
+    	  if (msTextMatches.getSelectedItemPosition() == AdapterView.INVALID_POSITION) {
+    	   Toast.makeText(this, "Please select No. of Matches from spinner",
+    	     Toast.LENGTH_SHORT).show();
+    	   return;
+    	  }
 
 }
+    }

@@ -16,6 +16,9 @@ public final class R {
         public static final int side_navigation_out_to_left=0x7f040004;
         public static final int side_navigation_out_to_right=0x7f040005;
     }
+    public static final class array {
+        public static final int saNoOfMatches=0x7f0c0000;
+    }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
@@ -946,8 +949,10 @@ containing a value of this type.
         public static final int abs__textfield_searchview_right_holo_dark=0x7f02006d;
         public static final int abs__textfield_searchview_right_holo_light=0x7f02006e;
         public static final int ic_launcher=0x7f02006f;
-        public static final int side_navigation_shadow_left=0x7f020070;
-        public static final int side_navigation_shadow_right=0x7f020071;
+        public static final int image_border=0x7f020070;
+        public static final int klubbhuset=0x7f020071;
+        public static final int side_navigation_shadow_left=0x7f020072;
+        public static final int side_navigation_shadow_right=0x7f020073;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f070022;
@@ -994,31 +999,37 @@ containing a value of this type.
         public static final int edit_query=0x7f070027;
         public static final int homeAsUp=0x7f070006;
         public static final int listMode=0x7f070002;
-        public static final int mode=0x7f07003d;
-        public static final int mode_group=0x7f07003e;
-        public static final int mode_left=0x7f07003f;
-        public static final int mode_right=0x7f070040;
+        public static final int list_item_bg=0x7f070039;
+        public static final int list_item_description=0x7f07003c;
+        public static final int list_item_image=0x7f07003a;
+        public static final int list_item_title=0x7f07003b;
+        public static final int mode=0x7f070043;
+        public static final int mode_group=0x7f070044;
+        public static final int mode_left=0x7f070045;
+        public static final int mode_right=0x7f070046;
         public static final int normal=0x7f070001;
+        public static final int sNoOfMatches=0x7f070036;
         public static final int searchBox=0x7f070033;
         public static final int searchButton=0x7f070034;
-        public static final int shadow=0x7f07003c;
+        public static final int shadow=0x7f070042;
         public static final int showCustom=0x7f070008;
         public static final int showHome=0x7f070005;
         public static final int showTitle=0x7f070007;
-        public static final int side_navigation_item_icon=0x7f070037;
-        public static final int side_navigation_item_text=0x7f070038;
-        public static final int side_navigation_listview=0x7f07003b;
-        public static final int side_navigation_menu=0x7f07003a;
-        public static final int side_navigation_menu_item1=0x7f070041;
-        public static final int side_navigation_menu_item2=0x7f070042;
-        public static final int side_navigation_menu_item3=0x7f070043;
-        public static final int side_navigation_menu_item4=0x7f070044;
-        public static final int side_navigation_menu_item5=0x7f070045;
-        public static final int side_navigation_outside_view=0x7f070039;
-        public static final int side_navigation_view=0x7f070036;
+        public static final int side_navigation_item_icon=0x7f07003d;
+        public static final int side_navigation_item_text=0x7f07003e;
+        public static final int side_navigation_listview=0x7f070041;
+        public static final int side_navigation_menu=0x7f070040;
+        public static final int side_navigation_menu_item1=0x7f070047;
+        public static final int side_navigation_menu_item2=0x7f070048;
+        public static final int side_navigation_menu_item3=0x7f070049;
+        public static final int side_navigation_menu_item4=0x7f07004a;
+        public static final int side_navigation_menu_item5=0x7f07004b;
+        public static final int side_navigation_outside_view=0x7f07003f;
+        public static final int side_navigation_view=0x7f070038;
+        public static final int speakButton=0x7f070035;
         public static final int tabMode=0x7f070003;
         public static final int useLogo=0x7f070004;
-        public static final int weeklyList=0x7f070035;
+        public static final int weeklyList=0x7f070037;
         public static final int wrap_content=0x7f070000;
     }
     public static final class integer {
@@ -1049,15 +1060,16 @@ containing a value of this type.
         public static final int abs__search_view=0x7f030015;
         public static final int abs__simple_dropdown_hint=0x7f030016;
         public static final int activity_main=0x7f030017;
-        public static final int sherlock_spinner_dropdown_item=0x7f030018;
-        public static final int sherlock_spinner_item=0x7f030019;
-        public static final int side_navigation_item=0x7f03001a;
-        public static final int side_navigation_left=0x7f03001b;
-        public static final int side_navigation_right=0x7f03001c;
+        public static final int list_item=0x7f030018;
+        public static final int sherlock_spinner_dropdown_item=0x7f030019;
+        public static final int sherlock_spinner_item=0x7f03001a;
+        public static final int side_navigation_item=0x7f03001b;
+        public static final int side_navigation_left=0x7f03001c;
+        public static final int side_navigation_right=0x7f03001d;
     }
     public static final class menu {
-        public static final int main=0x7f0c0000;
-        public static final int side_navigation_menu=0x7f0c0001;
+        public static final int main=0x7f0d0000;
+        public static final int side_navigation_menu=0x7f0d0001;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1108,6 +1120,7 @@ containing a value of this type.
         public static final int action_settings=0x7f0a0010;
         public static final int app_name=0x7f0a000f;
         public static final int hello_world=0x7f0a0011;
+        public static final int sNoOfMatches=0x7f0a0012;
     }
     public static final class style {
         /** 

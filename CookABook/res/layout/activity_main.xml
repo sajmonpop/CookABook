@@ -20,6 +20,22 @@
         android:text="Search" 
         android:layout_below="@+id/searchBox"
         android:layout_centerHorizontal="true"/>
+    
+    <Button
+        android:id="@+id/speakButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Speak"
+        android:onClick="speak" 
+        android:layout_below="@+id/searchBox"
+        android:layout_centerHorizontal="true"/>
+    
+    <Spinner
+        android:id="@+id/sNoOfMatches"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/saNoOfMatches"
+        android:prompt="@string/sNoOfMatches"/>
 
     <ListView
         android:id="@+id/weeklyList"
