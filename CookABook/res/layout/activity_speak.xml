@@ -28,9 +28,7 @@
         android:text="Speak"
         android:onClick="speak" 
         android:layout_below="@+id/searchButton"
-        android:layout_centerHorizontal="true"
-        tools:context=".VoiceRecognitionActivity" />
-    
+        android:layout_centerHorizontal="true"/>
     
     <Spinner
         android:id="@+id/sNoOfMatches"

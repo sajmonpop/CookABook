@@ -30,9 +30,9 @@ public final class R {
 		public static final int side_navigation_item_text_color = 0x7f050003;
 	}
 	public static final class layout {
-		public static final int side_navigation_right = 0x7f03001d;
-		public static final int side_navigation_item = 0x7f03001b;
-		public static final int side_navigation_left = 0x7f03001c;
+		public static final int side_navigation_right = 0x7f03001e;
+		public static final int side_navigation_item = 0x7f03001c;
+		public static final int side_navigation_left = 0x7f03001d;
 	}
 	public static final class drawable {
 		public static final int side_navigation_shadow_right = 0x7f020073;

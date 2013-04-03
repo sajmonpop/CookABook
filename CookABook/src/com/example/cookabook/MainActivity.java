@@ -163,23 +163,22 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
     }
     
     public void speak(View view) {
+    	Log.d("MyApp","pre speak ()");
     	  Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-    	 
+    	  Log.d("MyApp","I am here");
     	  // Specify the calling package to identify your application
-    	  intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getClass()
-    	    .getPackage().getName());
-    	 
+    	  intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getClass().getPackage().getName());
+    	  Log.d("MyApp","I am here");
     	  // Display an hint to the user about what he should say.
-    	  intent.putExtra(RecognizerIntent.EXTRA_PROMPT, eText.getText()
-    	    .toString());
-    	 
+    	  intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "How do you do");//eText.getText().toString());
+    	  Log.d("MyApp","I am here");
     	  // Given an hint to the recognizer about what the user is going to say
     	  //There are two form of language model available
     	  //1.LANGUAGE_MODEL_WEB_SEARCH : For short phrases
     	  //2.LANGUAGE_MODEL_FREE_FORM  : If not sure about the words or phrases and its domain.
     	intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
     	    RecognizerIntent.LANGUAGE_MODEL_WEB_SEARCH);
-    	 
+    	Log.d("MyApp","post speak");
     	  // If number of Matches is not selected then return show toast message
     	  if (msTextMatches.getSelectedItemPosition() == AdapterView.INVALID_POSITION) {
     	   Toast.makeText(this, "Please select No. of Matches from spinner",
