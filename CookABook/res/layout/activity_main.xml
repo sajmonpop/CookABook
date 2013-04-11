@@ -37,13 +37,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/saNoOfMatches"
-        android:prompt="@string/sNoOfMatches"/>
+        android:prompt="@string/sNoOfMatches"
+        android:layout_below="@+id/speakButton"/>
 
     <ListView
         android:id="@+id/weeklyList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/searchButton" >
+        android:layout_below="@+id/sNoOfMatches" >
         
     </ListView>
     
