@@ -1,5 +1,6 @@
 package com.example.cookabook;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -39,7 +44,21 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
 	private Spinner msTextMatches;
 	private Button speakBtn;
 	private ListView mlvTextMatches;
+	private TextView tv;
 	private static final int VOICE_RECOGNITION_REQUEST_CODE = 1001;
+	private SpeechRecognizer sr;
+	private MainActivity ma;
+	private boolean killCommanded = true;
+	Intent intent;
+	private Handler mHandler = new Handler();
+
+	//legel commands
+	private static final String[] VALID_COMMANDS = {
+		"next",
+		"previous",
+		"repeat",
+		"close"
+	};
 	//private MyList weekList;
 
 	@Override
@@ -69,6 +88,16 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
 		msTextMatches = (Spinner) findViewById(R.id.sNoOfMatches);
 		Text2Speech tts = new Text2Speech(btn, eText, this);
 		mlvTextMatches = (ListView) findViewById(R.id.weeklyList);
+		tv = (TextView) findViewById(R.id.textView);
+
+		ArrayList<String> textMatchList = new ArrayList<String>();
+		textMatchList.add("hoj");
+		tv.setText("yo simon");
+
+		mlvTextMatches.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,
+				textMatchList));
+		sr = SpeechRecognizer.createSpeechRecognizer(this);       
+		sr.setRecognitionListener(new listener());
 		checkVoiceRecognition();
 
 		/*ListView listView = (ListView) findViewById(R.id.weeklyList);
@@ -172,65 +201,22 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
 		startActivity(intent);
 		// no animation of transition
 		overridePendingTransition(0, 0);
+
 	}
 
-	/*public void speak(View view) {
-		Log.d("MyApp","pre speak ()");
-		Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-		Log.d("MyApp","I am here");
-		// Specify the calling package to identify your application
-		intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getClass().getPackage().getName());
-		Log.d("MyApp","I am here");
-		// Display an hint to the user about what he should say.
-		intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "How do you do");//eText.getText().toString());
-		Log.d("MyApp","I am here");
-		// Given an hint to the recognizer about what the user is going to say
-		//There are two form of language model available
-		//1.LANGUAGE_MODEL_WEB_SEARCH : For short phrases
-		//2.LANGUAGE_MODEL_FREE_FORM  : If not sure about the words or phrases and its domain.
-		intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-				RecognizerIntent.LANGUAGE_MODEL_WEB_SEARCH);
-		Log.d("MyApp","post speak");
-		// If number of Matches is not selected then return show toast message
-		if (msTextMatches.getSelectedItemPosition() == AdapterView.INVALID_POSITION) {
-			Toast.makeText(this, "Please select No. of Matches from spinner",
-					Toast.LENGTH_SHORT).show();
-			return;
-		}
 
-	}*/
 	public void speak(View view) {
+		killCommanded=false;
 		Log.d("MyApp","pre speak ()");
-		Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 
-		// Specify the calling package to identify your application
-		intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getClass()
-				.getPackage().getName());
-		Log.d("MyApp","pre speak ()");
-		// Display an hint to the user about what he should say.
-		intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "tala för i helvete!");
-		Log.d("MyApp","pre speak ()");
-		// Given an hint to the recognizer about what the user is going to say
-		//There are two form of language model available
-		//1.LANGUAGE_MODEL_WEB_SEARCH : For short phrases
-		//2.LANGUAGE_MODEL_FREE_FORM  : If not sure about the words or phrases and its domain.
-		intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-				RecognizerIntent.LANGUAGE_MODEL_WEB_SEARCH);
 
-		// If number of Matches is not selected then return show toast message
-		if (msTextMatches.getSelectedItemPosition() == AdapterView.INVALID_POSITION) {
-			Toast.makeText(this, "Please select No. of Matches from spinner",
-					Toast.LENGTH_SHORT).show();
-			return;
-		}
+		intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);        
+		intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+		intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,"voice.recognition.test");
 
-		int noOfMatches = Integer.parseInt(msTextMatches.getSelectedItem()
-				.toString());
-		// Specify how many results you want to receive. The results will be
-		// sorted where the first result is the one with higher confidence.
-		intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, noOfMatches);
-		//Start the Voice recognizer activity for the result.
-		startActivityForResult(intent, VOICE_RECOGNITION_REQUEST_CODE);
+		intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS,5); 
+		sr.startListening(intent);
+
 	}
 	public void checkVoiceRecognition() {
 		// Check if voice recognition is present
@@ -285,7 +271,12 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
 			}else if(resultCode == RecognizerIntent.RESULT_SERVER_ERROR){
 				showToastMessage("Server Error");
 			}
-		super.onActivityResult(requestCode, resultCode, data);
+		String s = mlvTextMatches.getItemAtPosition(0).toString();
+		if( !mlvTextMatches.getItemAtPosition(0).toString().equals("föregående")){
+			Log.d("checken", "|"+mlvTextMatches.getItemAtPosition(0).toString()+"|"+"föregående"+"|");
+			speak(eText);
+		}else{
+			super.onActivityResult(requestCode, resultCode, data);}
 	}
 	/**
 	 * Helper method to show the toast message
@@ -293,4 +284,123 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
 	void showToastMessage(String message){
 		Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 	}
+	class listener implements RecognitionListener          
+	{
+		public static final String EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS="20";
+		public void onReadyForSpeech(Bundle params)
+		{
+			Log.d("lyssnaren", "onReadyForSpeech");
+		}
+		public void onBeginningOfSpeech()
+		{
+			Log.d("lyssnaren", "onBeginningOfSpeech");
+		}
+		public void onRmsChanged(float rmsdB)
+		{
+			Log.d("lyssnaren", "onRmsChanged");
+		}
+		public void onBufferReceived(byte[] buffer)
+		{
+			Log.d("lyssnaren", "onBufferReceived");
+		}
+		public void onEndOfSpeech()
+		{
+			Log.d("lyssnaren", "onEndofSpeech");
+			if(!killCommanded)
+				sr.startListening(intent);
+		}
+		public void onError(int error)
+		{
+			Log.d("lyssnaren",  "error " +  error);
+			//mText.setText("error " + error);
+		}
+		public void onResults(Bundle results)
+		{
+			if(!killCommanded){
+				ArrayList<String> matches = null;
+				if(results != null){
+					matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+					if(matches != null){
+						Log.d("HHH", "results are " + matches.toString());
+						final ArrayList<String> matchesStrings = matches;
+						processCommand(matchesStrings);
+						Log.d("Hej hurru! on result", ""+killCommanded);
+					}
+					sr.startListening(intent);
+					Log.d("i if", ""+killCommanded);}
+				else{
+					sr.stopListening();
+					Log.d("i else", ""+killCommanded);}
+
+			}
+
+
+			//mlvTextMatches.setAdapter(new ArrayAdapter<String>(MainActivity,android.R.layout.simple_list_item_1,data));
+			//mText.setText("results: "+String.valueOf(data.size()));        
+		}
+		public void onPartialResults(Bundle partialResults)
+		{
+			Log.d("lyssnaren", "onPartialResults");
+		}
+		public void onEvent(int eventType, Bundle params)
+		{
+			Log.d("lyssnaren", "onEvent " + eventType);
+		}
+	}
+	public void setTextInList(ArrayList<String> arr){
+		mlvTextMatches.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,arr));
+
+	}
+	private String getResponse(int command){
+		//Calendar c = Calendar.getInstance();
+		Log.d("checkern innan ", ""+killCommanded);
+		String retString =  "I'm sorry, Simon. I'm afraid I can't do that.";
+		SimpleDateFormat dfDate_day;
+		switch (command) {
+		case 0:
+			dfDate_day= new SimpleDateFormat("HH:mm:ss");
+			retString = "next";
+			break;
+		case 1:
+			dfDate_day = new SimpleDateFormat("dd/MM/yyyy");
+			retString= " previous";
+			break;
+		case 2:
+			retString = "repeat";
+			break;
+
+		case 3:
+			Log.d("checkern ", ""+killCommanded);
+			killCommanded = true;
+			break;
+
+		default:
+			break;
+		}
+
+		return retString;
+	}
+	private void processCommand(ArrayList<String> matchStrings){
+		String response = "I'm sorry, Dave. I'm afraid I can't do that.";
+		int maxStrings = matchStrings.size();
+		boolean resultFound = false;
+		for(int i =0; i < VALID_COMMANDS.length && !resultFound;i++){
+			Log.d("FOOOOR", ""+i);
+			for(int j=0; j < maxStrings && !resultFound; j++){
+				Log.d("FÅÅÅÅR ", ""+j);
+				if(matchStrings.get(j).equals(VALID_COMMANDS[i]) ){
+					response = getResponse(i);
+				}
+			}
+		}
+		tv.setText(response);
+		final String finalResponse = response;
+		mHandler.post(new Runnable() {
+			public void run() {
+				tv.setText(finalResponse);
+			}
+		});
+
+	}
+
 }

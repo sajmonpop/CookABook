@@ -5,6 +5,8 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="sNoOfMatches">No of Matches</string>
+    <string name="not_listening">No no nono</string>
+    
     <string-array name="saNoOfMatches">
         <item>1</item>
         <item>2</item>

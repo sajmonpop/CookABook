@@ -8,51 +8,55 @@
         android:id="@+id/searchBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="10" 
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50px"/>
+        android:layout_marginTop="50px"
+        android:layout_weight="1"
+        android:ems="10" />
 
     <Button
         android:id="@+id/searchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search" 
         android:layout_below="@+id/searchBox"
-        android:layout_centerHorizontal="true"/>
-    
+        android:layout_centerHorizontal="true"
+        android:text="Search" />
+
     <Button
         android:id="@+id/speakButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Speak"
-        android:onClick="speak" 
         android:layout_below="@+id/searchButton"
         android:layout_centerHorizontal="true"
+        android:onClick="speak"
+        android:text="Speak"
         tools:context=".VoiceRecognitionActivity" />
-    
-    
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/speakButton"
+        android:text="TextView" />
+
     <Spinner
         android:id="@+id/sNoOfMatches"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/speakButton"
         android:entries="@array/saNoOfMatches"
-        android:prompt="@string/sNoOfMatches"
-        android:layout_below="@+id/speakButton"/>
+        android:prompt="@string/sNoOfMatches" />
 
     <ListView
         android:id="@+id/weeklyList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/sNoOfMatches" >
-        
     </ListView>
-    
+
     <com.devspark.sidenavigation.SideNavigationView
         android:id="@+id/side_navigation_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
-
     </com.devspark.sidenavigation.SideNavigationView>
 
 </RelativeLayout>

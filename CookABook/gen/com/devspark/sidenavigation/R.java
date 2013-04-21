@@ -8,12 +8,12 @@ package com.devspark.sidenavigation;
 
 public final class R {
 	public static final class id {
-		public static final int side_navigation_menu = 0x7f070040;
-		public static final int side_navigation_item_text = 0x7f07003e;
-		public static final int side_navigation_listview = 0x7f070041;
-		public static final int side_navigation_outside_view = 0x7f07003f;
-		public static final int side_navigation_item_icon = 0x7f07003d;
-		public static final int shadow = 0x7f070042;
+		public static final int side_navigation_menu = 0x7f070041;
+		public static final int side_navigation_item_text = 0x7f07003f;
+		public static final int side_navigation_listview = 0x7f070042;
+		public static final int side_navigation_outside_view = 0x7f070040;
+		public static final int side_navigation_item_icon = 0x7f07003e;
+		public static final int shadow = 0x7f070043;
 	}
 	public static final class anim {
 		public static final int side_navigation_in_from_right = 0x7f040003;
