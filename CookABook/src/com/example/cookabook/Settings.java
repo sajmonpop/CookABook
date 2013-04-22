@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 public class Settings extends Activity{
 	
-	Text2Speech t2s;
+	private Text2Speech t2s;
 
 	Settings(Text2Speech text2speech){
 		t2s = text2speech;
@@ -16,7 +16,6 @@ public class Settings extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
 	}
 	
 	public void test(){
@@ -29,5 +28,4 @@ public class Settings extends Activity{
 		t2s.changePitch(f);
 		t2s.changeSpeed(f);
 	}
-
 }
