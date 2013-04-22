@@ -1,5 +1,9 @@
 package com.example.cookabook;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +11,7 @@ import java.util.List;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognitionListener;
@@ -14,17 +19,14 @@ import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.AlertDialog;
-import android.app.ListActivity;
 import android.app.SearchManager;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -48,6 +50,8 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
 	private static final int VOICE_RECOGNITION_REQUEST_CODE = 1001;
 	private SpeechRecognizer sr;
 	private MainActivity ma;
+	private Text2Speech t2s;
+	private RecipeReader rr;
 	private boolean killCommanded = true;
 	Intent intent;
 	private Handler mHandler = new Handler();
@@ -80,13 +84,17 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
 
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		
+		rr= new RecipeReader();
+		String recipe = rr.read(this, "recipe_guacamole.txt");
 
 		//weekList  = new MyList();
 		Button btn = (Button) findViewById(R.id.searchButton);
 		speakBtn = (Button) findViewById(R.id.speakButton);
 		EditText eText = (EditText) findViewById(R.id.searchBox);
 		msTextMatches = (Spinner) findViewById(R.id.sNoOfMatches);
-		Text2Speech tts = new Text2Speech(btn, eText, this);
+		t2s = new Text2Speech(btn, recipe, this);
+		
 		mlvTextMatches = (ListView) findViewById(R.id.weeklyList);
 		tv = (TextView) findViewById(R.id.textView);
 
@@ -96,7 +104,7 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
 
 		mlvTextMatches.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,
 				textMatchList));
-		sr = SpeechRecognizer.createSpeechRecognizer(this);       
+		sr = SpeechRecognizer.createSpeechRecognizer(this);
 		sr.setRecognitionListener(new listener());
 		checkVoiceRecognition();
 
@@ -322,6 +330,8 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
 					matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 					if(matches != null){
 						Log.d("HHH", "results are " + matches.toString());
+						Log.d("HHH", "and size is " + matches.size());
+						
 						final ArrayList<String> matchesStrings = matches;
 						processCommand(matchesStrings);
 						Log.d("Hej hurru! on result", ""+killCommanded);
@@ -332,11 +342,7 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
 					sr.stopListening();
 					Log.d("i else", ""+killCommanded);}
 
-			}
-
-
-			//mlvTextMatches.setAdapter(new ArrayAdapter<String>(MainActivity,android.R.layout.simple_list_item_1,data));
-			//mText.setText("results: "+String.valueOf(data.size()));        
+			}   
 		}
 		public void onPartialResults(Bundle partialResults)
 		{
@@ -358,14 +364,15 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
 		SimpleDateFormat dfDate_day;
 		switch (command) {
 		case 0:
-			dfDate_day= new SimpleDateFormat("HH:mm:ss");
+			t2s.speakOut(1);
 			retString = "next";
 			break;
 		case 1:
-			dfDate_day = new SimpleDateFormat("dd/MM/yyyy");
+			t2s.speakOut(-1);
 			retString= " previous";
 			break;
 		case 2:
+			t2s.speakOut(0);
 			retString = "repeat";
 			break;
 
@@ -382,13 +389,15 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
 	}
 	private void processCommand(ArrayList<String> matchStrings){
 		String response = "I'm sorry, Dave. I'm afraid I can't do that.";
-		int maxStrings = matchStrings.size();
+		String[] words = matchStrings.get(0).split(" ");
+		int maxStrings = words.length;
+		Log.d("Maxstring", ""+maxStrings);
 		boolean resultFound = false;
 		for(int i =0; i < VALID_COMMANDS.length && !resultFound;i++){
 			Log.d("FOOOOR", ""+i);
 			for(int j=0; j < maxStrings && !resultFound; j++){
 				Log.d("FÅÅÅÅR ", ""+j);
-				if(matchStrings.get(j).equals(VALID_COMMANDS[i]) ){
+				if(words[j].equals(VALID_COMMANDS[i]) ){
 					response = getResponse(i);
 				}
 			}
@@ -400,7 +409,5 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
 				tv.setText(finalResponse);
 			}
 		});
-
 	}
-
 }
