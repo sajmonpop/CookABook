@@ -1,31 +1,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-<<<<<<< HEAD
-    android:layout_height="96dp"
-    android:padding="16dp"
-=======
     android:layout_height="78dp"
     android:padding="7dp"
-    android:background="#f2cccc"
->>>>>>> Layout
+    android:background="#ffe5e5"
     android:id="@+id/list_item_bg"
      >
 	
 		    <ImageView
 		        android:id="@+id/list_item_image"
-<<<<<<< HEAD
-		        android:layout_width="112dp"
-		        android:layout_height="64dp"
-		        android:adjustViewBounds="true"
-		        android:background="@drawable/image_border"
-		        android:contentDescription="Image"
-		        android:src="@drawable/klubbhuset"/>
-		    
-		    <TextView android:layout_width="wrap_content" 
-		        android:layout_height="16dip"
-		        android:paddingLeft="16dp"
-		        android:paddingRight="16dp"
-=======
 		        android:layout_width="96dp"
 		        android:layout_height="wrap_content"
 		        android:layout_alignBottom="@+id/list_item_description"
@@ -38,45 +20,30 @@
 		    <TextView android:layout_width="wrap_content" 
 		        android:layout_height="wrap_content"
 		        android:paddingLeft="7dp"
-		        android:paddingTop="3dp"
 		        android:paddingRight="7dp"
->>>>>>> Layout
 		        android:layout_toRightOf="@+id/list_item_image"
 		        android:id="@+id/list_item_title"
 		        android:layout_marginBottom="8dp"
 		        android:maxLines="1"
 		        android:ellipsize="end"
 		        android:textStyle="bold"
-<<<<<<< HEAD
-		        android:textColor="#c33e34"
-		        android:text=""
-=======
 		        android:textColor="#000000"
+		        android:paddingTop="3dp"
 		        android:text="Köttfärsomelett i ugn"
->>>>>>> Layout
 		         />
 		        
 		     <TextView android:layout_width="wrap_content" 
 		        android:layout_height="40dp"
-<<<<<<< HEAD
-		        android:paddingLeft="16dp"
-=======
 		        android:paddingLeft="7dp"
->>>>>>> Layout
 		        android:layout_toRightOf="@+id/list_item_image"
 		        android:layout_below="@+id/list_item_title"
 		        android:id="@+id/list_item_description"
 		        android:maxLines="2"
-<<<<<<< HEAD
-		        android:ellipsize="end" 								
-		        android:text=""
-=======
 		        android:ellipsize="end"
 		        android:textColor="#000000"
 		        android:typeface="serif"
-		        android:textSize="12sp" 								
+		        android:textSize="12sp"  								
 		        android:text="Extremt lågt kolhydratinnehåll, passar dig som äter enligt GI-dietien. Mättande och enkel att göra. Servera med en salla..."
->>>>>>> Layout
 		         />							
     
 </RelativeLayout>

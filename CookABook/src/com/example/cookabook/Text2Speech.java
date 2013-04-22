@@ -1,6 +1,9 @@
 package com.example.cookabook;
 
+<<<<<<< HEAD
 import java.util.List;
+=======
+>>>>>>> Layout
 import java.util.Locale;
 
 import android.content.Context;
@@ -14,6 +17,7 @@ public class Text2Speech implements TextToSpeech.OnInitListener {
 	/** Called when the activity is first created. */
 
 	private TextToSpeech tts;
+<<<<<<< HEAD
 	private Button btnStart;
 	private String[] txtText;
 	private int line=0;
@@ -35,12 +39,38 @@ public class Text2Speech implements TextToSpeech.OnInitListener {
 			@Override
 			public void onClick(View arg0) {
 				speakOut(0);
+=======
+	private Button btnSpeak;
+	private EditText txtText;
+
+
+	public Text2Speech(Button btn, EditText eText, Context cont) {
+
+		
+
+		tts = new TextToSpeech(cont, this);
+
+		btnSpeak = btn;
+
+		txtText = eText;
+
+		// button on click event
+		btnSpeak.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				speakOut();
+>>>>>>> Layout
 			}
 
 		});
 	}
 
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> Layout
 	public void onDestroy() {
 		// Don't forget to shutdown tts!
 		if (tts != null) {
@@ -60,8 +90,13 @@ public class Text2Speech implements TextToSpeech.OnInitListener {
 					|| result == TextToSpeech.LANG_NOT_SUPPORTED) {
 				Log.e("TTS", "This Language is not supported");
 			} else {
+<<<<<<< HEAD
 				btnStart.setEnabled(true);
 				//speakOut(0);
+=======
+				btnSpeak.setEnabled(true);
+				speakOut();
+>>>>>>> Layout
 			}
 
 		} else {
@@ -70,6 +105,7 @@ public class Text2Speech implements TextToSpeech.OnInitListener {
 
 	}
 
+<<<<<<< HEAD
 	public void changePitch(float newPitch){
 		tts.setPitch(newPitch);
 	}
@@ -89,5 +125,12 @@ public class Text2Speech implements TextToSpeech.OnInitListener {
 			tts.speak("Error!", TextToSpeech.QUEUE_FLUSH, null);
 			line=0;
 		}
+=======
+	private void speakOut() {
+		System.out.print("inne i speakout. ");
+		String text = txtText.getText().toString();
+
+		tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+>>>>>>> Layout
 	}
 }

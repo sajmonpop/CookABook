@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff7f7" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Köttfärsomelett i ugn"
+                android:paddingTop="7dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingBottom="14dp"
+                android:textStyle="bold"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+            
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="137dp"
+                android:layout_height="137dp"
+                android:layout_below="@+id/textView1"
+                android:paddingLeft="22dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/kottfars" />
+
+            <TextView
+                android:id="@+id/ingredienser"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingRight="7dp"
+                android:paddingLeft="14dp"
+                android:textColor="#000000"
+                android:layout_alignTop="@+id/imageView1"
+                android:layout_toRightOf="@+id/imageView1"
+                android:text="1 msk salt
+1 dl kakao
+1 krm peppar
+2 röda chili
+5 dl mjöl
+1 vitlöksklyfta
+2 l ketchup
+1 tsk citronsaft" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageView1"
+                android:textColor="#000000"
+                android:paddingLeft="12dp"
+                android:paddingRight="14dp"
+                android:paddingTop="14dp"
+                android:textSize="16sp"
+                android:typeface="serif"
+                android:text="Sätt ugnen på 200 grader. Hacka lök och vitlök och bryn i stekpanna. Tillsätt köttfärsen och bryn tills den är genomstekt. Salta och peppra. Häll i vattnet, tomatpurén och hackad färsk timjan och låt puttra tills vätskan kokat bort. Vispa äggen med grädde och oregano och häll i en smörad gratängform. 
+Grädda i ugnen i cirka 8-10 min. Ta ut och lägg på fyllningen. Höj värmen till 225. Fördela köttfärsen i formen. Blanda grädde, crème fraiche och ost i en separat bunke och häll smeten över köttfärsen. Fördela skivade coctailtomater över omeletten. Grädda ca 10 minuter eller tills osten smält och den fått lite färg." />
+
+            <ToggleButton
+                android:id="@+id/toggleButton1"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/textView1"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:text="Cook it!"
+                android:textStyle="bold"
+                android:textOff="Cook it!"
+                android:textOn="Stop cooking" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

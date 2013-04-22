@@ -1,5 +1,10 @@
 # cache for current jar dependecy. DO NOT EDIT.
 # format is <lastModified> <length> <SHA-1> <path>
 # Encoding is UTF-8
+<<<<<<< HEAD
 1363361524404 393154 307c1cc532eabbf1d135b43e5c983c9da700449d C:\Users\Simon\workspace\CookABook\ActionBarSherlock\library\libs\android-support-v4.jar
 1363361536283 393154 307c1cc532eabbf1d135b43e5c983c9da700449d C:\Users\Simon\workspace\CookABook\CookABook\libs\android-support-v4.jar
+=======
+1366527008000 393154 307c1cc532eabbf1d135b43e5c983c9da700449d /Users/Simon/Downloads/CookABook-master/CookABook/libs/android-support-v4.jar
+1363265758000 393154 307c1cc532eabbf1d135b43e5c983c9da700449d /Users/Simon/Documents/workspace/CookABook Project/ActionBarSherlock/library/libs/android-support-v4.jar
+>>>>>>> Layout

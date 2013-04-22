@@ -19,5 +19,9 @@
         <item>9</item>
         <item>10</item>
     </string-array>
+<<<<<<< HEAD
+=======
+        <string name="textview">TextView</string>
+>>>>>>> Layout
 
 </resources>

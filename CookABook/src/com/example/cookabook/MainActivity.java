@@ -1,9 +1,12 @@
 package com.example.cookabook;
 
+<<<<<<< HEAD
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+=======
+>>>>>>> Layout
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +14,10 @@ import java.util.List;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+<<<<<<< HEAD
 import android.content.res.AssetManager;
+=======
+>>>>>>> Layout
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognitionListener;
@@ -19,14 +25,26 @@ import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.util.Log;
 import android.view.View;
+<<<<<<< HEAD
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+=======
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+>>>>>>> Layout
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.AlertDialog;
+<<<<<<< HEAD
+=======
+import android.app.ListActivity;
+>>>>>>> Layout
 import android.app.SearchManager;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -50,8 +68,11 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
 	private static final int VOICE_RECOGNITION_REQUEST_CODE = 1001;
 	private SpeechRecognizer sr;
 	private MainActivity ma;
+<<<<<<< HEAD
 	private Text2Speech t2s;
 	private RecipeReader rr;
+=======
+>>>>>>> Layout
 	private boolean killCommanded = true;
 	Intent intent;
 	private Handler mHandler = new Handler();
@@ -84,17 +105,24 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
 
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+<<<<<<< HEAD
 		
 		rr= new RecipeReader();
 		String recipe = rr.read(this, "recipe_guacamole.txt");
+=======
+>>>>>>> Layout
 
 		//weekList  = new MyList();
 		Button btn = (Button) findViewById(R.id.searchButton);
 		speakBtn = (Button) findViewById(R.id.speakButton);
 		EditText eText = (EditText) findViewById(R.id.searchBox);
 		msTextMatches = (Spinner) findViewById(R.id.sNoOfMatches);
+<<<<<<< HEAD
 		t2s = new Text2Speech(btn, recipe, this);
 		
+=======
+		Text2Speech tts = new Text2Speech(btn, eText, this);
+>>>>>>> Layout
 		mlvTextMatches = (ListView) findViewById(R.id.weeklyList);
 		tv = (TextView) findViewById(R.id.textView);
 
@@ -104,7 +132,11 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
 
 		mlvTextMatches.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,
 				textMatchList));
+<<<<<<< HEAD
 		sr = SpeechRecognizer.createSpeechRecognizer(this);
+=======
+		sr = SpeechRecognizer.createSpeechRecognizer(this);       
+>>>>>>> Layout
 		sr.setRecognitionListener(new listener());
 		checkVoiceRecognition();
 
@@ -330,8 +362,11 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
 					matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 					if(matches != null){
 						Log.d("HHH", "results are " + matches.toString());
+<<<<<<< HEAD
 						Log.d("HHH", "and size is " + matches.size());
 						
+=======
+>>>>>>> Layout
 						final ArrayList<String> matchesStrings = matches;
 						processCommand(matchesStrings);
 						Log.d("Hej hurru! on result", ""+killCommanded);
@@ -342,7 +377,15 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
 					sr.stopListening();
 					Log.d("i else", ""+killCommanded);}
 
+<<<<<<< HEAD
 			}   
+=======
+			}
+
+
+			//mlvTextMatches.setAdapter(new ArrayAdapter<String>(MainActivity,android.R.layout.simple_list_item_1,data));
+			//mText.setText("results: "+String.valueOf(data.size()));        
+>>>>>>> Layout
 		}
 		public void onPartialResults(Bundle partialResults)
 		{
@@ -364,6 +407,7 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
 		SimpleDateFormat dfDate_day;
 		switch (command) {
 		case 0:
+<<<<<<< HEAD
 			t2s.speakOut(1);
 			retString = "next";
 			break;
@@ -373,6 +417,16 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
 			break;
 		case 2:
 			t2s.speakOut(0);
+=======
+			dfDate_day= new SimpleDateFormat("HH:mm:ss");
+			retString = "next";
+			break;
+		case 1:
+			dfDate_day = new SimpleDateFormat("dd/MM/yyyy");
+			retString= " previous";
+			break;
+		case 2:
+>>>>>>> Layout
 			retString = "repeat";
 			break;
 
@@ -389,15 +443,23 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
 	}
 	private void processCommand(ArrayList<String> matchStrings){
 		String response = "I'm sorry, Dave. I'm afraid I can't do that.";
+<<<<<<< HEAD
 		String[] words = matchStrings.get(0).split(" ");
 		int maxStrings = words.length;
 		Log.d("Maxstring", ""+maxStrings);
+=======
+		int maxStrings = matchStrings.size();
+>>>>>>> Layout
 		boolean resultFound = false;
 		for(int i =0; i < VALID_COMMANDS.length && !resultFound;i++){
 			Log.d("FOOOOR", ""+i);
 			for(int j=0; j < maxStrings && !resultFound; j++){
 				Log.d("FÅÅÅÅR ", ""+j);
+<<<<<<< HEAD
 				if(words[j].equals(VALID_COMMANDS[i]) ){
+=======
+				if(matchStrings.get(j).equals(VALID_COMMANDS[i]) ){
+>>>>>>> Layout
 					response = getResponse(i);
 				}
 			}
@@ -409,5 +471,11 @@ public class MainActivity extends SherlockActivity implements ISideNavigationCal
 				tv.setText(finalResponse);
 			}
 		});
+<<<<<<< HEAD
 	}
+=======
+
+	}
+
+>>>>>>> Layout
 }

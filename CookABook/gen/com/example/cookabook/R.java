@@ -951,10 +951,19 @@ containing a value of this type.
         public static final int ic_launcher=0x7f02006f;
         public static final int image_border=0x7f020070;
         public static final int klubbhuset=0x7f020071;
+<<<<<<< HEAD
         public static final int side_navigation_shadow_left=0x7f020072;
         public static final int side_navigation_shadow_right=0x7f020073;
+=======
+        public static final int kottfars=0x7f020072;
+        public static final int side_navigation_shadow_left=0x7f020073;
+        public static final int side_navigation_shadow_right=0x7f020074;
+>>>>>>> Layout
     }
     public static final class id {
+        public static final int Mina favoriter=0x7f07003b;
+        public static final int Månadens populäraste=0x7f07003a;
+        public static final int Veckans recept=0x7f070037;
         public static final int abs__action_bar=0x7f070022;
         public static final int abs__action_bar_container=0x7f070021;
         public static final int abs__action_bar_subtitle=0x7f070011;
@@ -995,10 +1004,15 @@ containing a value of this type.
         public static final int abs__title=0x7f07001b;
         public static final int abs__titleDivider=0x7f07001c;
         public static final int abs__up=0x7f07000b;
+        public static final int button1=0x7f070042;
+        public static final int button2=0x7f070043;
         public static final int disableHome=0x7f070009;
         public static final int edit_query=0x7f070027;
         public static final int homeAsUp=0x7f070006;
+        public static final int imageView1=0x7f07003d;
+        public static final int ingredienser=0x7f07003e;
         public static final int listMode=0x7f070002;
+<<<<<<< HEAD
         public static final int list_item_bg=0x7f07003a;
         public static final int list_item_description=0x7f07003d;
         public static final int list_item_image=0x7f07003b;
@@ -1031,6 +1045,47 @@ containing a value of this type.
         public static final int textView=0x7f070036;
         public static final int useLogo=0x7f070004;
         public static final int weeklyList=0x7f070038;
+=======
+        public static final int list_item_bg=0x7f070048;
+        public static final int list_item_description=0x7f07004a;
+        public static final int list_item_image=0x7f070049;
+        public static final int list_item_title=0x7f07004b;
+        public static final int mode=0x7f070052;
+        public static final int mode_group=0x7f070053;
+        public static final int mode_left=0x7f070054;
+        public static final int mode_right=0x7f070055;
+        public static final int normal=0x7f070001;
+        public static final int sNoOfMatches=0x7f070047;
+        public static final int scrollView1=0x7f07003c;
+        public static final int searchBox=0x7f070044;
+        public static final int searchButton=0x7f070045;
+        public static final int seekBar1=0x7f070040;
+        public static final int seekBar2=0x7f070041;
+        public static final int shadow=0x7f070051;
+        public static final int showCustom=0x7f070008;
+        public static final int showHome=0x7f070005;
+        public static final int showTitle=0x7f070007;
+        public static final int side_navigation_item_icon=0x7f07004c;
+        public static final int side_navigation_item_text=0x7f07004d;
+        public static final int side_navigation_listview=0x7f070050;
+        public static final int side_navigation_menu=0x7f07004f;
+        public static final int side_navigation_menu_item1=0x7f070056;
+        public static final int side_navigation_menu_item2=0x7f070057;
+        public static final int side_navigation_menu_item3=0x7f070058;
+        public static final int side_navigation_menu_item4=0x7f070059;
+        public static final int side_navigation_menu_item5=0x7f07005a;
+        public static final int side_navigation_outside_view=0x7f07004e;
+        public static final int side_navigation_view=0x7f070036;
+        public static final int speakButton=0x7f070046;
+        public static final int tabMode=0x7f070003;
+        public static final int textView=0x7f070038;
+        public static final int textView1=0x7f070033;
+        public static final int textView2=0x7f070034;
+        public static final int textView3=0x7f070035;
+        public static final int toggleButton1=0x7f07003f;
+        public static final int useLogo=0x7f070004;
+        public static final int weeklyList=0x7f070039;
+>>>>>>> Layout
         public static final int wrap_content=0x7f070000;
     }
     public static final class integer {
@@ -1060,6 +1115,7 @@ containing a value of this type.
         public static final int abs__search_dropdown_item_icons_2line=0x7f030014;
         public static final int abs__search_view=0x7f030015;
         public static final int abs__simple_dropdown_hint=0x7f030016;
+<<<<<<< HEAD
         public static final int activity_main=0x7f030017;
         public static final int activity_speak=0x7f030018;
         public static final int list_item=0x7f030019;
@@ -1068,6 +1124,20 @@ containing a value of this type.
         public static final int side_navigation_item=0x7f03001c;
         public static final int side_navigation_left=0x7f03001d;
         public static final int side_navigation_right=0x7f03001e;
+=======
+        public static final int activity_help=0x7f030017;
+        public static final int activity_main=0x7f030018;
+        public static final int activity_recipe=0x7f030019;
+        public static final int activity_settings=0x7f03001a;
+        public static final int activity_speak=0x7f03001b;
+        public static final int list_item=0x7f03001c;
+        public static final int list_item2=0x7f03001d;
+        public static final int sherlock_spinner_dropdown_item=0x7f03001e;
+        public static final int sherlock_spinner_item=0x7f03001f;
+        public static final int side_navigation_item=0x7f030020;
+        public static final int side_navigation_left=0x7f030021;
+        public static final int side_navigation_right=0x7f030022;
+>>>>>>> Layout
     }
     public static final class menu {
         public static final int main=0x7f0d0000;
@@ -1124,6 +1194,10 @@ containing a value of this type.
         public static final int hello_world=0x7f0a0011;
         public static final int not_listening=0x7f0a0013;
         public static final int sNoOfMatches=0x7f0a0012;
+<<<<<<< HEAD
+=======
+        public static final int textview=0x7f0a0014;
+>>>>>>> Layout
     }
     public static final class style {
         /** 
